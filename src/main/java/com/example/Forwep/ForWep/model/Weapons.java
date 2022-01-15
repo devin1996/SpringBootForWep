@@ -5,25 +5,35 @@
  */
 package com.example.Forwep.ForWep.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author devin.desilva
  */
-@Document(collation = "Wder")
-public class Weapon {
+@Entity
+@Table(name = "weapons")
+public class Weapons {
 
     @Id
-    private String id;
-    
+    private long id;
+
+    @Column(name = "category")
     private String category;
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
+    @Column(name = "ammunition")
     private String ammunition;
 
-    public Weapon(String id, String category, String title, String description, String ammunition) {
+    public Weapons() {
+    }
+
+    public Weapons(int id, String category, String title, String description, String ammunition) {
         this.id = id;
         this.category = category;
         this.title = title;
@@ -31,11 +41,11 @@ public class Weapon {
         this.ammunition = ammunition;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
