@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +52,12 @@ public class WeaponControllerM {
 		return ResponseEntity.ok(Weapons);
 	}
         
+        	// Add new weapon rest api
+	@PostMapping("/weapons")
+	public Weapons AddWeapon(@RequestBody Weapons Weapons) {
+		return weaponRepository.save(Weapons);
+	}
+        
         // update employee rest api	
 	@PutMapping("/weapons/{id}")
 	public ResponseEntity<Weapons> updateWeapon(@PathVariable Long id, @RequestBody Weapons weaponDetails){
@@ -70,7 +77,7 @@ public class WeaponControllerM {
         
         // delete employee rest api
 	@DeleteMapping("/weapons/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
+	public ResponseEntity<Map<String, Boolean>> deleteWeapon(@PathVariable Long id){
 		Weapons weapons = weaponRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Weapon not exist with id :" + id));
 		

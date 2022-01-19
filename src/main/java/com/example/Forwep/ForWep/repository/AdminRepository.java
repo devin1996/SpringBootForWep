@@ -5,17 +5,15 @@
  */
 package com.example.Forwep.ForWep.repository;
 
-import com.example.Forwep.ForWep.model.Employee;
-import com.example.Forwep.ForWep.model.Weapons;
+import com.example.Forwep.ForWep.model.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author devin.desilva
  */
+public interface AdminRepository extends JpaRepository<Admin, Long>{
 
-public interface WeaponRepository  extends JpaRepository<Weapons, Long>{
-
+    Admin findByEmail(String email);
     
 }
